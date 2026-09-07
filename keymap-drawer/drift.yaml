@@ -1,7 +1,7 @@
 layout: {zmk_keyboard: drift}
 layers:
-  base: [ESC, '`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', Ctl+C, TAB, Q, '&kpws W', E, R, T, Y, U, I, O, P, '[', ']', LGUI, CAPS, '&kpad A',
-    '&kpws S', '&kpad D', F, G, H, J, K, L, ;, '''', ENTER, LCTRL, LALT, Z, X, C, V, B, Ctl+V, \, N, M, ',', ., /, BACKSPACE, DEL, LSHFT, SPACE, lower, raise, SPACE]
+  base: [ESC, '`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', Gui+C, TAB, Q, W, E, R, T, Y, U, I, O, P, '[', ']', LCTRL, CAPS, '&SOCD A', S, '&SOCD
+      D', F, G, H, J, K, L, ;, '''', ENTER, LALT, LGUI, Z, X, C, V, B, Gui+V, \, N, M, ',', ., /, BACKSPACE, DEL, LSHFT, SPACE, lower, raise, SPACE]
   lower:
   - ESC
   - '`'
@@ -33,9 +33,9 @@ layers:
   - \
   - {t: ▽, type: trans}
   - CAPS
-  - A
+  - {t: ▽, type: trans}
   - S
-  - D
+  - {t: ▽, type: trans}
   - F
   - G
   - H
@@ -52,8 +52,8 @@ layers:
   - C
   - V
   - B
-  - VOL DN
-  - VOL UP
+  - Gui+C
+  - Gui+Z
   - N
   - M
   - ','
@@ -61,11 +61,11 @@ layers:
   - LEFT ARROW
   - DOWN ARROW
   - RIGHT ARROW
-  - '&bootloader'
-  - SPACE
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   - {type: held}
   - {t: ▽, type: trans}
-  - SPACE
+  - {t: ▽, type: trans}
   raise:
   - BT CLR ALL
   - BT CLR
@@ -75,7 +75,7 @@ layers:
   - {t: BT, h: '3'}
   - {t: BT, h: '4'}
   - {t: mouse2, h: toggle}
-  - F7
+  - {t: trackb_off, h: toggle}
   - F8
   - F9
   - F10
@@ -97,9 +97,9 @@ layers:
   - '&mkp MCLK'
   - {t: ▽, type: trans}
   - CAPS
-  - A
+  - {t: ▽, type: trans}
   - S
-  - D
+  - {t: ▽, type: trans}
   - F
   - G
   - H
@@ -116,8 +116,8 @@ layers:
   - C
   - V
   - B
-  - VOL DN
-  - '&bootloader'
+  - Ctl+UP
+  - Sft+Gui+4
   - N
   - M
   - ','
@@ -125,11 +125,11 @@ layers:
   - '&mmv MOVE_LEFT'
   - '&mmv MOVE_DOWN'
   - '&mmv MOVE_RIGHT'
-  - '&bootloader'
-  - SPACE
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {type: held}
-  - SPACE
+  - {t: ▽, type: trans}
   adjust:
   - ESC
   - '`'
@@ -161,9 +161,9 @@ layers:
   - '&mkp MCLK'
   - {t: ▽, type: trans}
   - CAPS
-  - A
+  - {t: ▽, type: trans}
   - S
-  - D
+  - {t: ▽, type: trans}
   - F
   - G
   - H
@@ -189,11 +189,11 @@ layers:
   - '&mmv MOVE_LEFT'
   - '&mmv MOVE_DOWN'
   - '&mmv MOVE_RIGHT'
-  - LSHFT
-  - SPACE
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   - {type: held}
   - {type: held}
-  - SPACE
+  - {t: ▽, type: trans}
   mouse:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -331,7 +331,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: base, h: toggle}
-  - {t: ▽, type: trans}
+  - {t: trackb_off, h: toggle}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -449,4 +449,260 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  trackb_off:
+  - ESC
+  - '`'
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  - '7'
+  - '8'
+  - '9'
+  - '0'
+  - '-'
+  - '='
+  - Gui+C
+  - TAB
+  - Q
+  - W
+  - E
+  - R
+  - T
+  - Y
+  - U
+  - I
+  - O
+  - P
+  - '['
+  - ']'
+  - LCTRL
+  - CAPS
+  - '&SOCD A'
+  - S
+  - '&SOCD D'
+  - F
+  - G
+  - H
+  - J
+  - K
+  - L
+  - ;
+  - ''''
+  - ENTER
+  - LALT
+  - LGUI
+  - Z
+  - X
+  - C
+  - V
+  - B
+  - Gui+V
+  - \
+  - N
+  - M
+  - ','
+  - .
+  - /
+  - BACKSPACE
+  - DEL
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - lower2
+  - raise2
+  - {t: ▽, type: trans}
+  lower2:
+  - ESC
+  - '`'
+  - F1
+  - F2
+  - F3
+  - F4
+  - F5
+  - F6
+  - F7
+  - F8
+  - F9
+  - F10
+  - F11
+  - F12
+  - {t: ▽, type: trans}
+  - TAB
+  - Q
+  - W
+  - E
+  - R
+  - T
+  - Y
+  - U
+  - I
+  - O
+  - P
+  - '['
+  - \
+  - {t: ▽, type: trans}
+  - CAPS
+  - {t: ▽, type: trans}
+  - S
+  - {t: ▽, type: trans}
+  - F
+  - G
+  - H
+  - J
+  - K
+  - L
+  - ;
+  - UP ARROW
+  - ENTER
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - Z
+  - X
+  - C
+  - V
+  - B
+  - Gui+C
+  - Gui+Z
+  - N
+  - M
+  - ','
+  - .
+  - LEFT ARROW
+  - DOWN ARROW
+  - RIGHT ARROW
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {type: held}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  raise2:
+  - BT CLR ALL
+  - BT CLR
+  - {t: BT, h: '0'}
+  - {t: BT, h: '1'}
+  - {t: BT, h: '2'}
+  - {t: BT, h: '3'}
+  - {t: BT, h: '4'}
+  - {t: mouse2, h: toggle}
+  - {t: base, h: toggle}
+  - F8
+  - F9
+  - F10
+  - '&msc SCRL_UP'
+  - '&mkp MB4'
+  - {t: ▽, type: trans}
+  - TAB
+  - Q
+  - W
+  - E
+  - R
+  - T
+  - Y
+  - U
+  - I
+  - O
+  - P
+  - '&msc SCRL_DOWN'
+  - '&mkp MCLK'
+  - {t: ▽, type: trans}
+  - CAPS
+  - {t: ▽, type: trans}
+  - S
+  - {t: ▽, type: trans}
+  - F
+  - G
+  - H
+  - J
+  - K
+  - L
+  - '&mkp LCLK'
+  - '&mmv MOVE_UP'
+  - '&mkp RCLK'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - Z
+  - X
+  - C
+  - V
+  - B
+  - Ctl+UP
+  - Sft+Gui+4
+  - N
+  - M
+  - ','
+  - .
+  - '&mmv MOVE_LEFT'
+  - '&mmv MOVE_DOWN'
+  - '&mmv MOVE_RIGHT'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {type: held}
+  - {t: ▽, type: trans}
+  adjust2:
+  - ESC
+  - '`'
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  - '7'
+  - '8'
+  - '9'
+  - '0'
+  - '-'
+  - '='
+  - {t: ▽, type: trans}
+  - TAB
+  - Q
+  - W
+  - E
+  - R
+  - T
+  - Y
+  - U
+  - I
+  - O
+  - P
+  - '&msc SCRL_DOWN'
+  - '&mkp MCLK'
+  - {t: ▽, type: trans}
+  - CAPS
+  - {t: ▽, type: trans}
+  - S
+  - {t: ▽, type: trans}
+  - F
+  - G
+  - H
+  - J
+  - K
+  - L
+  - '&mkp LCLK'
+  - '&mmv MOVE_UP'
+  - '&mkp RCLK'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - Z
+  - X
+  - C
+  - V
+  - B
+  - VOL DN
+  - VOL UP
+  - N
+  - M
+  - ','
+  - .
+  - '&mmv MOVE_LEFT'
+  - '&mmv MOVE_DOWN'
+  - '&mmv MOVE_RIGHT'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {type: held}
+  - {type: held}
   - {t: ▽, type: trans}
