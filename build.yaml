@@ -28,3 +28,14 @@ include:
     artifact-name: drift_right_central
   - board: nice_nano//zmk
     shield: settings_reset
+
+  # --- Temporary left-half debug variants. Remove once the split link is fixed.
+  # Only the left half changed behaviour, so bisect it there.
+  - board: nice_nano//zmk
+    shield: drift_left
+    cmake-args: -DCONFIG_ZMK_SLEEP=n
+    artifact-name: drift_left_NOSLEEP
+  - board: nice_nano//zmk
+    shield: drift_left
+    cmake-args: -DCONFIG_ZMK_USB_LOGGING=y
+    artifact-name: drift_left_LOGGING
