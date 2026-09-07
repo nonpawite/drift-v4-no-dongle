@@ -65,8 +65,8 @@ layers:
   - Ctl+SPACE
   - RIGHT ALT
   lower:
-  - ESC
-  - '`'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   - F1
   - F2
   - F3
@@ -80,51 +80,51 @@ layers:
   - F11
   - F12
   - {t: ▽, type: trans}
-  - TAB
-  - Q
-  - W
-  - E
-  - R
-  - T
-  - Y
-  - U
-  - I
-  - O
-  - P
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - PREV
+  - {t: ▽, type: trans}
+  - NEXT
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   - '['
-  - \
-  - {t: ▽, type: trans}
-  - CAPS
-  - {t: ▽, type: trans}
-  - S
-  - {t: ▽, type: trans}
-  - F
-  - G
-  - H
-  - J
-  - K
-  - L
-  - ;
-  - UP ARROW
-  - ENTER
+  - ']'
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - Z
-  - X
-  - C
-  - V
-  - B
-  - Gui+C
-  - Gui+Z
-  - N
-  - M
-  - ','
-  - .
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - VOL DN
+  - MUTE
+  - VOL UP
+  - {t: ▽, type: trans}
   - LEFT ARROW
+  - UP ARROW
   - DOWN ARROW
   - RIGHT ARROW
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - PLAY PAUSE
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
