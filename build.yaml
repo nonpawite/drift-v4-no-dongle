@@ -37,5 +37,5 @@ include:
     artifact-name: drift_left_NOSLEEP
   - board: nice_nano//zmk
     shield: drift_left
-    cmake-args: -DCONFIG_ZMK_USB_LOGGING=y
+    snippet: zmk-usb-logging
     artifact-name: drift_left_LOGGING
