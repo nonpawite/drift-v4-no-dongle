@@ -48,7 +48,11 @@
         reg = <0>;                                                // first SPI slave device
         spi-max-frequency = <2000000>;                            // 2 MHz max SPI frequency
         irq-gpios = <&gpio0 22 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; // interrupt pin
-        cpi = <600>;                                              // trackball CPI (steps of 200, min 200)
+        cpi = <1200>;                                             // trackball CPI (steps of 200, min 200)
+                                                                  // halved back to 600-equivalent speed by the
+                                                                  // zip_xy_scaler below; raising CPI alone just
+                                                                  // makes the pointer faster, the pair is what
+                                                                  // buys finer steps at the same speed
 		// swap-xy;                                               // optional
         invert-x;                                                 // optional
         // invert-y;                                              // optional
@@ -74,8 +78,10 @@
 &trackball_split_listener { // local trackball input split device child node, receiving events from the peripheral and raising them locally
 	status = "okay";
     	input-processors = 
-		    <&am_temp_layer 5 659>;   /* <- guarded automouse: layer 5 for 0.659s */
-			//<&am_temp_layer 5 659>;   /* remove the line above if you want to disable automouse */
+		    <&am_temp_layer 5 659>,   /* <- guarded automouse: layer 5 for 0.659s */
+		    <&zip_xy_scaler 1 2>;     /* 1200 CPI back down to 600-equivalent; tracks remainders */
+			/* drop the am_temp_layer entry above to disable automouse; the scaler
+			   must stay or the pointer runs at the full 1200 CPI */
 
 	// Suppress automouse entirely while a momentary layer is held
 	// (LOWER=1, RAISE=2, ADJUST=4, LOWER2=9, RAISE2=10, ADJUST2=11)
@@ -88,7 +94,10 @@
 		layers = <3 7>; // SCROLL, SCROLL2
 		input-processors =
             <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>,
-            <&zip_xy_scaler 1 16>,
+            /* 32 not 16: layer overrides replace the base processors rather than
+               stacking (input_listener.c filter_with_input_config), so the base
+               zip_xy_scaler 1 2 never runs here and this sees the raw 1200 CPI */
+            <&zip_xy_scaler 1 32>,
             <&zip_xy_to_scroll_mapper>;
 	};	
 
