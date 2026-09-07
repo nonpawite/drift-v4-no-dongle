@@ -1,7 +1,8 @@
 layout: {zmk_keyboard: drift}
 layers:
-  base: [ESC, '`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', Gui+C, TAB, Q, W, E, R, T, Y, U, I, O, P, '[', ']', LCTRL, CAPS, '&SOCD A', S, '&SOCD
-      D', F, G, H, J, K, L, ;, '''', ENTER, LALT, LGUI, Z, X, C, V, B, Gui+V, \, N, M, ',', ., /, BACKSPACE, DEL, LSHFT, SPACE, lower, raise, SPACE]
+  base: [ESC, '=', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '', '`', TAB, Q, W, E, R, T, Y, U, I, O, P, \, LEFT CONTROL, '', BACKSPACE, A, S, D, F,
+    G, H, J, K, L, ;, '''', ENTER, LEFT COMMAND, LEFT SHIFT, Z, X, C, V, B, Gui+SPACE, Gui+SPACE, N, M, ',', ., /, RIGHT SHIFT, DEL, LEFT ALT, SPACE, Ctl+SPACE, Ctl+SPACE,
+    RIGHT ALT]
   lower:
   - ESC
   - '`'
@@ -63,7 +64,7 @@ layers:
   - RIGHT ARROW
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {type: held}
+  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   raise:
@@ -128,7 +129,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {type: held}
+  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   adjust:
   - ESC
@@ -191,8 +192,8 @@ layers:
   - '&mmv MOVE_RIGHT'
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {type: held}
-  - {type: held}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   mouse:
   - {t: ▽, type: trans}
