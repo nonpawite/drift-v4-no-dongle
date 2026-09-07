@@ -83,6 +83,12 @@
             <&zip_xy_scaler 1 16>,
             <&zip_xy_to_scroll_mapper>;
 	};	
+
+	off {
+		layers = <8>; // TRACKB_OFF
+		input-processors =
+            <&zip_xy_scaler 1 1000000>;
+	};
 };
 
 // This lets the split firmware know the trackball belongs to this side
