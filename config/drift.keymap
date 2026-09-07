@@ -19,12 +19,16 @@
 
 // Layer indices
 
+// Order here must match the node order under / { keymap { } } below --
+// that order IS the index. The shield overlay's input-processor blocks
+// reference these numbers, so renumbering a layer means editing
+// boards/shields/drift/drift_right_central.overlay too.
 #define BASE        0
 #define LOWER       1
 #define RAISE       2
-#define ADJUST      3
-#define MOUSE       4
-#define SCROLL      5
+#define SCROLL      3
+#define ADJUST      4
+#define MOUSE       5
 #define MOUSE2      6
 #define SCROLL2     7
 #define TRACKB_OFF  8
