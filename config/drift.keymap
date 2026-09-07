@@ -18,11 +18,11 @@
 #define ZMK_BEHAVIORS_OMIT_KT
 
 // Layer indices
-
 // Order here must match the node order under / { keymap { } } below --
 // that order IS the index. The shield overlay's input-processor blocks
 // reference these numbers, so renumbering a layer means editing
 // boards/shields/drift/drift_right_central.overlay too.
+
 #define BASE        0
 #define LOWER       1
 #define RAISE       2
@@ -120,7 +120,7 @@
             bindings = <
 &trans  &trans  &kp F1  &kp F2        &kp F3            &kp F4        &kp F5                  &kp F6          &kp F7            &kp F8             &kp F9           &kp F10  &kp F11  &kp F12
 &trans  &trans  &trans  &kp C_PREV    &trans            &kp C_NEXT    &trans                  &trans          &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &trans           &trans   &trans   &trans
-&trans  &trans  &trans  &kp C_VOL_DN  &kp C_MUTE        &kp C_VOL_UP  &trans                  &kp LEFT_ARROW  &kp UP_ARROW      &kp DOWN_ARROW     &kp RIGHT_ARROW  &trans   &trans   &trans
+&trans  &trans  &trans  &kp C_VOL_DN  &kp C_MUTE        &kp C_VOL_UP  &trans                  &kp LEFT_ARROW  &kp DOWN_ARROW    &kp UP_ARROW       &kp RIGHT_ARROW  &trans   &trans   &trans
 &trans  &trans  &trans  &trans        &trans            &trans        &trans  &trans  &trans  &trans          &trans            &trans             &trans           &trans   &trans   &trans
                         &trans        &kp C_PLAY_PAUSE  &trans                        &trans  &trans
             >;
@@ -224,7 +224,7 @@
             bindings = <
 &trans  &trans  &kp F1  &kp F2        &kp F3            &kp F4        &kp F5                  &kp F6          &kp F7            &kp F8             &kp F9           &kp F10  &kp F11  &kp F12
 &trans  &trans  &trans  &kp C_PREV    &trans            &kp C_NEXT    &trans                  &trans          &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &trans           &trans   &trans   &trans
-&trans  &trans  &trans  &kp C_VOL_DN  &kp C_MUTE        &kp C_VOL_UP  &trans                  &kp LEFT_ARROW  &kp UP_ARROW      &kp DOWN_ARROW     &kp RIGHT_ARROW  &trans   &trans   &trans
+&trans  &trans  &trans  &kp C_VOL_DN  &kp C_MUTE        &kp C_VOL_UP  &trans                  &kp LEFT_ARROW  &kp DOWN_ARROW    &kp UP_ARROW       &kp RIGHT_ARROW  &trans   &trans   &trans
 &trans  &trans  &trans  &trans        &trans            &trans        &trans  &trans  &trans  &trans          &trans            &trans             &trans           &trans   &trans   &trans
                         &trans        &kp C_PLAY_PAUSE  &trans                        &trans  &trans
             >;
