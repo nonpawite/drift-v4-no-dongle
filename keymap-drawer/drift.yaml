@@ -101,8 +101,8 @@ layers:
   - VOL UP
   - {t: ▽, type: trans}
   - LEFT ARROW
-  - UP ARROW
   - DOWN ARROW
+  - UP ARROW
   - RIGHT ARROW
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -613,8 +613,8 @@ layers:
   - VOL UP
   - {t: ▽, type: trans}
   - LEFT ARROW
-  - UP ARROW
   - DOWN ARROW
+  - UP ARROW
   - RIGHT ARROW
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
