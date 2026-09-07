@@ -1,8 +1,69 @@
 layout: {zmk_keyboard: drift}
 layers:
-  base: [ESC, '=', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '', '`', TAB, Q, W, E, R, T, Y, U, I, O, P, \, LEFT CONTROL, '', BACKSPACE, A, S, D, F,
-    G, H, J, K, L, ;, '''', ENTER, LEFT COMMAND, LEFT SHIFT, Z, X, C, V, B, Gui+SPACE, Gui+SPACE, N, M, ',', ., /, RIGHT SHIFT, DEL, LEFT ALT, SPACE, Ctl+SPACE, Ctl+SPACE,
-    RIGHT ALT]
+  base:
+  - ESC
+  - '='
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  - '7'
+  - '8'
+  - '9'
+  - '0'
+  - '-'
+  - {t: trackb_off, h: toggle}
+  - '`'
+  - TAB
+  - Q
+  - W
+  - E
+  - R
+  - T
+  - Y
+  - U
+  - I
+  - O
+  - P
+  - \
+  - LEFT CONTROL
+  - ''
+  - BACKSPACE
+  - A
+  - S
+  - D
+  - F
+  - G
+  - H
+  - J
+  - K
+  - L
+  - ;
+  - ''''
+  - ENTER
+  - LEFT COMMAND
+  - LEFT SHIFT
+  - Z
+  - X
+  - C
+  - V
+  - B
+  - Gui+SPACE
+  - Gui+SPACE
+  - N
+  - M
+  - ','
+  - .
+  - /
+  - RIGHT SHIFT
+  - DEL
+  - LEFT ALT
+  - SPACE
+  - Ctl+SPACE
+  - Ctl+SPACE
+  - RIGHT ALT
   lower:
   - ESC
   - '`'
@@ -452,7 +513,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   trackb_off:
-  - ESC
+  - {t: ▽, type: trans}
   - '`'
   - '1'
   - '2'
@@ -465,7 +526,7 @@ layers:
   - '9'
   - '0'
   - '-'
-  - '='
+  - {t: base, h: toggle}
   - Gui+C
   - TAB
   - Q
