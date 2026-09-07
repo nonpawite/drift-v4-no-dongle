@@ -18,14 +18,18 @@
 #define ZMK_BEHAVIORS_OMIT_KT
 
 // Layer indices
-#define BASE    0
-#define LOWER   1
-#define RAISE   2
-#define ADJUST  3
-#define MOUSE   4
-#define SCROLL  5
-#define MOUSE2  6
-#define SCROLL2 7
+#define BASE        0
+#define LOWER       1
+#define RAISE       2
+#define ADJUST      3
+#define MOUSE       4
+#define SCROLL      5
+#define MOUSE2      6
+#define SCROLL2     7
+#define TRACKB_OFF  8
+#define LOWER2      9
+#define RAISE2      10
+#define ADJUST2     11
 
 // Reference: https://zmk.dev/docs/keymaps/behaviors/
 
@@ -36,6 +40,11 @@
         tri_layer {
             if-layers = <LOWER RAISE>;
             then-layer = <ADJUST>;
+        };
+
+        tri_layer2 {
+            if-layers = <LOWER2 RAISE2>;
+            then-layer = <ADJUST2>;
         };
     };
 
@@ -48,18 +57,12 @@
         };
 		
 		/* Setup left and right */
-        kpad: key_lip_a_d {
+        SOCD: key_lip_a_d {
                 compatible = "zmk,behavior-key-press-lip";
                 #binding-cells = <1>;
                 keycodes = <A D>;
         };
 
-        /* Setup up and down */
-        kpws: key_lip_w_s {
-                compatible = "zmk,behavior-key-press-lip";
-                #binding-cells = <1>;
-                keycodes = <W S>;
-        };
     };
 
     macros {
@@ -88,18 +91,14 @@
         // -------------------------------------------------------------------------------
         // BASE Layer
         // -------------------------------------------------------------------------------
-        // | ESC | ` | 1 | 2 |  3  |  4  |  5  |         |  6  |  7  | 8 | 9 | 0 | -  | = |
-        // |COPY |TAB| Q | W |  E  |  R  |  T  |         |  Y  |  U  | I | O | P | [  | ] |
-        // | GUI |CAP| A | S |  D  |  F  |  G  |         |  H  |  J  | K | L | ; | '  |ENT|
-        // | CTL |ALT| Z | X |  C  |  V  |  B  |Paste| \ |  N  |  M  | , | . | / |Bspc|Del|
-        //                   |Shift|Space|Lower|         |Raise|Space|
+       
         default_layer {
             display-name = "base";
             bindings = <
                 &kp ESC    &kp GRAVE &kp N1   &kp N2   &kp N3    &kp N4    &kp N5                       &kp N6    &kp N7    &kp N8    &kp N9  &kp N0   &kp MINUS     &kp EQUAL
-                &kp LC(C)  &kp TAB   &kp Q    &kpws W  &kp E     &kp R     &kp T                        &kp Y     &kp U     &kp I     &kp O   &kp P    &kp LBKT      &kp RBKT
-                &kp LGUI   &kp CAPS  &kpad A  &kpws S  &kpad D   &kp F     &kp G                        &kp H     &kp J     &kp K     &kp L   &kp SEMI &kp SQT       &kp ENTER
-                &kp LCTRL  &kp LALT  &kp Z    &kp X    &kp C     &kp V     &kp B     &kp LC(V) &kp BSLH &kp N     &kp M     &kp COMMA &kp DOT &kp FSLH &kp BACKSPACE &kp DEL
+                &kp LG(C)  &kp TAB   &kp Q    &kp W    &kp E     &kp R     &kp T                        &kp Y     &kp U     &kp I     &kp O   &kp P    &kp LBKT      &kp RBKT
+                &kp LCTRL  &kp CAPS  &SOCD A  &kp S    &SOCD D   &kp F     &kp G                        &kp H     &kp J     &kp K     &kp L   &kp SEMI &kp SQT       &kp ENTER
+                &kp LALT   &kp LGUI  &kp Z    &kp X    &kp C     &kp V     &kp B     &kp LG(V) &kp BSLH &kp N     &kp M     &kp COMMA &kp DOT &kp FSLH &kp BACKSPACE &kp DEL
                                                        &kp LSHFT &kp SPACE &mo LOWER                    &mo RAISE &kp SPACE
             >;
             sensor-bindings = <&enc_scroll SCRL_DOWN SCRL_UP>;
@@ -108,19 +107,15 @@
         // ------------------------------------------------------------------------
         // LOWER Layer
         // ------------------------------------------------------------------------
-        // |Esc | ` |F1 |F2 |F3  | F4  |F5 |         |F6 |  F7 | F8 |F9 |F10|F11|F12|
-        // |    |TAB| Q | W | E  |  R  | T |         | Y |  U  | I  | O | P | [ | \ |
-        // |GUI |CAP| A | S | D  |  F  | G |         | H |  J  | K  | L | ; | ↑ |Ent|
-        // |CTL |ALT| Z | X | C  |  V  | B |Vol-|Vol+| N |  M  | ,  | . | ← | ↓ | → |
-        //                  |Boot|Space|   |         |   |Space|
+		
         lower_layer {
             display-name = "lower";
             bindings = <
-                &kp ESC   &kp GRAVE &kp F1 &kp F2 &kp F3      &kp F4    &kp F5                           &kp F6  &kp F7    &kp F8    &kp F9    &kp F10        &kp F11        &kp F12
-                &trans    &kp TAB   &kp Q  &kp W  &kp E       &kp R     &kp T                            &kp Y   &kp U     &kp I     &kp O     &kp P          &kp LBKT       &kp BACKSLASH
-                &trans    &kp CAPS  &kp A  &kp S  &kp D       &kp F     &kp G                            &kp H   &kp J     &kp K     &kp L     &kp SEMI       &kp UP_ARROW   &kp ENTER
-                &trans    &trans    &kp Z  &kp X  &kp C       &kp V     &kp B  &kp C_VOL_DN &kp C_VOL_UP &kp N   &kp M     &kp COMMA &kp DOT   &kp LEFT_ARROW &kp DOWN_ARROW &kp RIGHT_ARROW
-                                                  &bootloader &kp SPACE &trans                           &trans  &kp SPACE
+                &kp ESC   &kp GRAVE &kp F1 &kp F2 &kp F3  &kp F4  &kp F5                        &kp F6  &kp F7    &kp F8    &kp F9    &kp F10        &kp F11        &kp F12
+                &trans    &kp TAB   &kp Q  &kp W  &kp E   &kp R   &kp T                         &kp Y   &kp U     &kp I     &kp O     &kp P          &kp LBKT       &kp BACKSLASH
+                &trans    &kp CAPS  &trans &kp S  &trans  &kp F   &kp G                         &kp H   &kp J     &kp K     &kp L     &kp SEMI       &kp UP_ARROW   &kp ENTER
+                &trans    &trans    &kp Z  &kp X  &kp C   &kp V   &kp B   &kp LG(C)  &kp LG(Z)  &kp N   &kp M     &kp COMMA &kp DOT   &kp LEFT_ARROW &kp DOWN_ARROW &kp RIGHT_ARROW
+                                                  &trans  &trans  &trans                        &trans  &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
@@ -128,44 +123,39 @@
         // ---------------------------------------------------------------------------
         // RAISE Layer
         // ---------------------------------------------------------------------------
-        // |ClrAll|Clr|BT1|BT2|BT3 | BT4 |BT5|         |M2 | F7  |F8 |F9 |F10 |Scr↑|MB4 |
-        // |      |TAB| Q | W | E  |  R  | T |         | Y |  U  | I | O | P  |Scr↓|MClk|
-        // | GUI  |CAP| A | S | D  |  F  | G |         | H |  J  | K | L |LClk| ↑  |RClk|
-        // | CTL  |ALT| Z | X | C  |  V  | B |Vol-|Boot| N |  M  | , | . | ←  | ↓  | →  |
-        //                    |Boot|Space|   |         |   |Space|
+       
         raise_layer {
             display-name = "raise";
             bindings = <
-                &bt BT_CLR_ALL &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3  &bt BT_SEL 4                          &to MOUSE2 &kp F7    &kp F8    &kp F9  &kp F10        &msc SCRL_UP   &mkp MB4
-                &trans         &kp TAB    &kp Q        &kp W        &kp E        &kp R         &kp T                                 &kp Y      &kp U     &kp I     &kp O   &kp P          &msc SCRL_DOWN &mkp MCLK
-                &trans         &kp CAPS   &kp A        &kp S        &kp D        &kp F         &kp G                                 &kp H      &kp J     &kp K     &kp L   &mkp LCLK      &mmv MOVE_UP   &mkp RCLK
-                &trans         &trans     &kp Z        &kp X        &kp C        &kp V         &kp B        &kp C_VOL_DN &bootloader &kp N      &kp M     &kp COMMA &kp DOT &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT
-                                                                    &bootloader  &kp SPACE     &trans                                &trans     &kp SPACE
+                &bt BT_CLR_ALL &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3  &bt BT_SEL 4                                &to MOUSE2 &to TRACKB_OFF  &kp F8    &kp F9  &kp F10        &msc SCRL_UP   &mkp MB4
+                &trans         &kp TAB    &kp Q        &kp W        &kp E        &kp R         &kp T                                       &kp Y      &kp U           &kp I     &kp O   &kp P          &msc SCRL_DOWN &mkp MCLK
+                &trans         &kp CAPS   &trans       &kp S        &trans       &kp F         &kp G                                       &kp H      &kp J           &kp K     &kp L   &mkp LCLK      &mmv MOVE_UP   &mkp RCLK
+                &trans         &trans     &kp Z        &kp X        &kp C        &kp V         &kp B         &kp LC(UP)    &kp LS(LG(N4))  &kp N      &kp M           &kp COMMA &kp DOT &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT
+                                                                    &trans       &trans        &trans                                      &trans     &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
         // ---------------------------------------------------------------------
-        // ADJUST Layer
+        // ADJUST Layer  (auto-activated when LOWER + RAISE are held simultaneously)
         // ---------------------------------------------------------------------
-        // (similar layout as RAISE, but with slightly different mods)
+        
         adjust_layer {
             display-name = "adjust";
             bindings = <
-                &kp ESC    &kp GRAVE  &kp N1       &kp N2       &kp N3       &kp N4       &kp N5                                 &kp N6 &kp N7    &kp N8    &kp N9  &kp N0         &kp MINUS      &kp EQUAL
-                &trans     &kp TAB    &kp Q        &kp W        &kp E        &kp R        &kp T                                  &kp Y  &kp U     &kp I     &kp O   &kp P          &msc SCRL_DOWN &mkp MCLK
-                &trans     &kp CAPS   &kp A        &kp S        &kp D        &kp F        &kp G                                  &kp H  &kp J     &kp K     &kp L   &mkp LCLK      &mmv MOVE_UP   &mkp RCLK
-                &trans     &trans     &kp Z        &kp X        &kp C        &kp V        &kp B        &kp C_VOL_DN &kp C_VOL_UP &kp N  &kp M     &kp COMMA &kp DOT &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT
-                                                                &kp LSHFT    &kp SPACE    &trans                                 &trans &kp SPACE
+                &kp ESC    &kp GRAVE  &kp N1       &kp N2       &kp N3   &kp N4    &kp N5                             &kp N6 &kp N7    &kp N8    &kp N9  &kp N0         &kp MINUS      &kp EQUAL
+                &trans     &kp TAB    &kp Q        &kp W        &kp E    &kp R     &kp T                              &kp Y  &kp U     &kp I     &kp O   &kp P          &msc SCRL_DOWN &mkp MCLK
+                &trans     &kp CAPS   &trans       &kp S        &trans   &kp F     &kp G                              &kp H  &kp J     &kp K     &kp L   &mkp LCLK      &mmv MOVE_UP   &mkp RCLK
+                &trans     &trans     &kp Z        &kp X        &kp C    &kp V     &kp B   &kp C_VOL_DN &kp C_VOL_UP  &kp N  &kp M     &kp COMMA &kp DOT &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT
+                                                                &trans   &trans    &trans                             &trans &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         // ---------------------------------------------------------------------
-        // MOUSE Layer
+        // MOUSE Layer  (momentary, activated from BASE)
         // ---------------------------------------------------------------------
-        // Mostly for orbit/pan macros + mouse buttons
-		
+        
         mouse_layer {
             display-name = "mouse";
             bindings = <
@@ -192,19 +182,27 @@
             sensor-bindings = <&enc_scroll SCRL_DOWN SCRL_UP>;
         };
 
-        mouse2_layer {
+        // ---------------------------------------------------------------------
+        // MOUSE2 Layer  (toggle, activated from RAISE - stays on until BASE is pressed)
+        // ---------------------------------------------------------------------
+        
+       mouse2_layer {
             display-name = "mouse2";
             bindings = <
-                &trans &trans &trans &trans &trans &trans &trans               &to BASE &trans   &trans   &trans      &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans &trans               &trans   &trans   &trans   &mo SCROLL2 &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans &trans               &trans   &mkp MB3 &mkp MB1 &mkp MB2    &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans   &trans   &pan     &orbit      &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans               &to BASE &to TRACKB_OFF  &trans   &trans      &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans               &trans   &trans          &trans   &mo SCROLL2 &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans               &trans   &mkp MB3        &mkp MB1 &mkp MB2    &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans   &trans          &pan     &orbit      &trans &trans &trans
                                             &trans &trans &trans               &trans   &trans
             >;
             sensor-bindings = <&enc_scroll SCRL_DOWN SCRL_UP>;
         };
 		
-		scroll2_layer {
+        // ---------------------------------------------------------------------
+        // SCROLL2 Layer  (momentary, activated from MOUSE2 layer - all keys transparent)
+        // ---------------------------------------------------------------------
+		
+        scroll2_layer {
             display-name = "scroll2";
             bindings = <
                 &trans &trans &trans &trans &trans &trans &trans               &trans &trans &trans &trans &trans &trans &trans
@@ -214,6 +212,54 @@
                                             &trans &trans &trans               &trans &trans
             >;
             sensor-bindings = <&enc_scroll SCRL_DOWN SCRL_UP>;
+        };
+
+        trackb_off_layer {
+            display-name = "trackb_off";
+            bindings = <
+                &kp ESC    &kp GRAVE &kp N1   &kp N2   &kp N3    &kp N4    &kp N5                        &kp N6     &kp N7    &kp N8    &kp N9  &kp N0   &kp MINUS     &kp EQUAL
+                &kp LG(C)  &kp TAB   &kp Q    &kp W    &kp E     &kp R     &kp T                         &kp Y      &kp U     &kp I     &kp O   &kp P    &kp LBKT      &kp RBKT
+                &kp LCTRL  &kp CAPS  &SOCD A  &kp S    &SOCD D   &kp F     &kp G                         &kp H      &kp J     &kp K     &kp L   &kp SEMI &kp SQT       &kp ENTER
+                &kp LALT   &kp LGUI  &kp Z    &kp X    &kp C     &kp V     &kp B      &kp LG(V) &kp BSLH &kp N      &kp M     &kp COMMA &kp DOT &kp FSLH &kp BACKSPACE &kp DEL
+                                                       &trans    &trans    &mo LOWER2                    &mo RAISE2 &trans
+            >;
+            sensor-bindings = <&enc_scroll SCRL_DOWN SCRL_UP>;
+        };
+		
+        lower2_layer {
+            display-name = "lower2";
+            bindings = <
+                &kp ESC   &kp GRAVE &kp F1 &kp F2 &kp F3  &kp F4  &kp F5                         &kp F6  &kp F7    &kp F8    &kp F9    &kp F10        &kp F11        &kp F12
+                &trans    &kp TAB   &kp Q  &kp W  &kp E   &kp R   &kp T                          &kp Y   &kp U     &kp I     &kp O     &kp P          &kp LBKT       &kp BACKSLASH
+                &trans    &kp CAPS  &trans &kp S  &trans  &kp F   &kp G                          &kp H   &kp J     &kp K     &kp L     &kp SEMI       &kp UP_ARROW   &kp ENTER
+                &trans    &trans    &kp Z  &kp X  &kp C   &kp V   &kp B   &kp LG(C)   &kp LG(Z)  &kp N   &kp M     &kp COMMA &kp DOT   &kp LEFT_ARROW &kp DOWN_ARROW &kp RIGHT_ARROW
+                                                  &trans  &trans  &trans                         &trans  &trans
+            >;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
+        };
+
+        raise2_layer {
+            display-name = "raise2";
+            bindings = <
+                &bt BT_CLR_ALL &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3  &bt BT_SEL 4                                &to MOUSE2 &to BASE  &kp F8    &kp F9  &kp F10        &msc SCRL_UP   &mkp MB4
+                &trans         &kp TAB    &kp Q        &kp W        &kp E        &kp R         &kp T                                       &kp Y      &kp U     &kp I     &kp O   &kp P          &msc SCRL_DOWN &mkp MCLK
+                &trans         &kp CAPS   &trans       &kp S        &trans       &kp F         &kp G                                       &kp H      &kp J     &kp K     &kp L   &mkp LCLK      &mmv MOVE_UP   &mkp RCLK
+                &trans         &trans     &kp Z        &kp X        &kp C        &kp V         &kp B         &kp LC(UP)    &kp LS(LG(N4))  &kp N      &kp M     &kp COMMA &kp DOT &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT
+                                                                    &trans       &trans        &trans                                      &trans     &trans
+            >;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
+        };
+
+        adjust2_layer {
+            display-name = "adjust2";
+            bindings = <
+                &kp ESC    &kp GRAVE  &kp N1       &kp N2       &kp N3       &kp N4       &kp N5                             &kp N6  &kp N7  &kp N8    &kp N9  &kp N0         &kp MINUS      &kp EQUAL
+                &trans     &kp TAB    &kp Q        &kp W        &kp E        &kp R        &kp T                              &kp Y   &kp U   &kp I     &kp O   &kp P          &msc SCRL_DOWN &mkp MCLK
+                &trans     &kp CAPS   &trans       &kp S        &trans       &kp F        &kp G                              &kp H   &kp J   &kp K     &kp L   &mkp LCLK      &mmv MOVE_UP   &mkp RCLK
+                &trans     &trans     &kp Z        &kp X        &kp C        &kp V        &kp B    &kp C_VOL_DN &kp C_VOL_UP &kp N   &kp M   &kp COMMA &kp DOT &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT
+                                                                &trans       &trans       &trans                             &trans  &trans
+            >;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
     };
 };
