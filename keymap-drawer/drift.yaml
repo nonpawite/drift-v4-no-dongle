@@ -43,7 +43,7 @@ layers:
   - ;
   - ''''
   - ENTER
-  - LEFT COMMAND
+  - LEFT CONTROL
   - LEFT SHIFT
   - Z
   - X
@@ -59,11 +59,11 @@ layers:
   - /
   - RIGHT SHIFT
   - raise
-  - LEFT ALT
+  - LEFT COMMAND
   - SPACE
-  - Ctl+SPACE
-  - Ctl+SPACE
-  - RIGHT ALT
+  - {t: Ctl+SPACE, h: (LEFT ALT)}
+  - {t: Ctl+SPACE, h: (LEFT ALT)}
+  - RIGHT COMMAND
   lower:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
